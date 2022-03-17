@@ -1,0 +1,60 @@
+{% set name = "maptools" %}
+{% set version = "0.3.4" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: "https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz"
+  sha256: c28d85790938ac47aeeeaae69afa578dfad36a53d6c92bdbfcf417e54a518a4e
+
+build:
+  number: 0
+  entry_points:
+    - map=maptools.command_line:main
+  script: "{{ PYTHON }} -m pip install . -vv"
+
+requirements:
+  host:
+    - gemmi
+    - matplotlib
+    - mrcfile
+    - numpy
+    - pip
+    - python
+    - pyyaml
+    - scikit-image
+    - scipy
+  run:
+    - gemmi
+    - matplotlib
+    - mrcfile
+    - numpy
+    - python
+    - pyyaml
+    - scikit-image
+    - scipy
+
+test:
+  imports:
+    - maptools
+  commands:
+    - map --help
+  requires:
+    - mock
+    - pytest
+    - pytest-cov
+
+about:
+  home: The package home page
+  license: BSD
+  license_family: BSD
+  license_file: 
+  summary: "Manipulate maps"
+  doc_url: 
+  dev_url: 
+
+extra:
+  recipe-maintainers:
+    - your-github-id-here

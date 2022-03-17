@@ -1,0 +1,42 @@
+{% set name = "starfile" %}
+{% set version = "0.4.11" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: "https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz"
+  sha256: 36f44a244fb891b604e44d31f20b68ffabaec3eb14c57f9eb66c2a5acf94427d
+
+build:
+  number: 0
+  script: "{{ PYTHON }} -m pip install . -vv"
+
+requirements:
+  host:
+    - pip
+    - python
+    - setuptools_scm
+    - pandas
+  run:
+    - python
+    - setuptools_scm
+    - pandas
+
+test:
+  imports:
+    - starfile
+
+about:
+  home: The package home page
+  license: BSD
+  license_family: BSD
+  license_file: 
+  summary: "STAR file reading and writing in python."
+  doc_url: 
+  dev_url: 
+
+extra:
+  recipe-maintainers:
+    - your-github-id-here
